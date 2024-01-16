@@ -47,8 +47,8 @@ const authOptions = ({
         }),
         Discord({
             name: 'discord',
-            clientId: DISCORD_CL_ID,
-            clientSecret: DISCORD_CL_SECRET,
+            clientId: process.env.DISCORD_CL_ID,
+            clientSecret: process.env.DISCORD_CL_SECRET,
             async profile(profile) {
                 console.log("profile Discord ", profile);
                 return {
