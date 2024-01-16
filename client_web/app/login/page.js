@@ -31,7 +31,7 @@ export default function Login() {
               <Image src="/logo_BEREB.png" width={100} height={100} />
             </div>
             <div style={{ justifyContent: 'center', display: 'flex', padding: '2em'}}>
-              <h1 style={{ color: '#292F36', fontSize: '1.5em', fontWeight: 'bold' }}>Crée votre compte !</h1>
+              <h1 style={{ color: '#292F36', fontSize: '1.5em', fontWeight: 'bold' }}>Se Connecter</h1>
             </div>
             <div style={{ height: '100%', padding: '1.5em'}}>
               <div style={{flexDirection: 'column', display: 'flex',  height: '40%', justifyContent: 'center'}}>
@@ -45,16 +45,14 @@ export default function Login() {
                   <input type="password" id="password" value={password} onChange={handlePasswordChange} style={styles.Myborder} />
                 </div>
               </div>
-              <div style={{ height: '90%', display: 'flex', flexDirection: 'column', justifyContent: 'end'}}>
-                {/* <Link href={"/pres"} style={{display: 'flex',  justifyContent: 'center', height: '25%'}}> */}
+              <div className='w-full flex justify-center p-5'>
                   <button style={styles.valid} onClick={async () => {
                     const res = await signIn('credentials', {email, password})
                     if (res.error) {
                       setError("Invalid credentials")
                       return
                     }
-                  }}>S'inscrire</button>
-                {/* </Link> */}
+                  }}>Se Connecter</button>
               </div>
             </div>
             <div style={{color: 'black', justifyContent: 'center', display: 'flex', padding: '2em', fontSize: '1.2em'}}>
@@ -78,7 +76,7 @@ export default function Login() {
             <div style={{ justifyContent: 'center', display: 'flex', padding: '0.5em' }}>
               <h1 style={{ color: 'black', marginLeft: '0.5em', marginRight: '1em' }}>Vous n'avez pas compte ?</h1>
               <Link href={'/signUp'} style={{color: 'blue'}}>
-                Se connecter
+                  Créer le ici
               </Link>
             </div>
           </div>

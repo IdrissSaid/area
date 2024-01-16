@@ -43,12 +43,17 @@ export default function Providers() {
         <div className=' w-full p-10 flex justify-center flex-col items-center'>
             <h1>Comptes Connectés</h1>
             { providers?.data?.map((provider, index) => {
-                let connectedProvider = user?.providers?.filter(p => p.provider?.charAt(0).toUpperCase() + p.provider?.slice(1) === provider.service);
-
+                let connectedProvider = user?.providers?.filter(p => {
+                    const PS = p.provider?.charAt(0).toUpperCase() + p.provider?.slice(1)
+                    if ( PS === provider.service || (PS === "Google" && (provider.service === "Gmail" || provider.service === "Youtube")))
+                        return p
+                    return undefined
+                })
+                const pService = provider.service.charAt(0).toLowerCase() + provider.service.slice(1)
                 return (
                     <div key={index}>
-                        <h1>{ provider?.service} {connectedProvider.length == 1 ? <label>{connectedProvider[0]?.email}</label> :
-                        <Link href={"#"} onClick={()=>signIn(provider.service.charAt(0).toLowerCase() + provider.service.slice(1) == "gmail" ? "google" : provider.service.charAt(0).toLowerCase() + provider.service.slice(1))}>Se connecter</Link>}</h1>
+                        <h1>{ provider?.service} {connectedProvider.length > 0 ? <label>{connectedProvider[0]?.email}</label> :
+                        <Link href={"#"} onClick={()=>signIn((pService == "gmail" || pService == "youtube") ? "google" : pService)}>Se connecter</Link>}</h1>
                     </div>
                 )
             })}

@@ -41,7 +41,7 @@ function Connection() {
   }
   return (
     <div>
-      <h1>Connecté avec {user?.providers[user?.providers?.length - 1]?.profile?.name || user?.providers[user?.providers?.length - 1]?.email}</h1>
+      <h1>Connecté avec {user?.providers[user?.providers?.length - 1]?.profile?.name || user?.providers[0]?.email}</h1>
       <Link className=' px-4 py-1 border-1 rounded-lg border-black text-black border-solid' onClick={async () => {
         signOut();
         await logout()

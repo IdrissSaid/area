@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 
 export default function signup() {
   const [email, setEmail] = useState('');
@@ -29,7 +30,7 @@ export default function signup() {
               <Image src="/logo_BEREB.png" width={100} height={100} />
             </div>
             <div style={{ justifyContent: 'center', display: 'flex', padding: '2em'}}>
-              <h1 style={{ color: '#292F36', fontSize: '1.5em', fontWeight: 'bold' }}>Connectez-vous</h1>
+              <h1 style={{ color: '#292F36', fontSize: '1.5em', fontWeight: 'bold' }}>Créer un compte</h1>
             </div>
             <div style={{ height: '100%',  padding: '1.5em'}}>
               <div style={{flexDirection: 'column', display: 'flex',  height: '40%', justifyContent: 'center'}}>
@@ -43,10 +44,14 @@ export default function signup() {
                   <input type="password" id="password" value={password} onChange={handlePasswordChange} style={styles.Myborder} />
                 </div>
               </div>
-              <div style={{ height: '90%', display: 'flex', flexDirection: 'column', justifyContent: 'end'}}>
-                <Link href={"/pres"} style={{display: 'flex',  justifyContent: 'center', height: '25%'}}>
-                  <button style={styles.valid}>Se connecter</button>
-                </Link>
+              <div className='w-full flex justify-center p-5'>
+                  <button style={styles.valid} onClick={async () => {
+                    const res = await signIn('credentials', {email, password})
+                    if (res.error) {
+                      setError("Invalid credentials")
+                      return
+                    }
+                  }}>S'inscrire</button>
               </div>
             </div>
             <div style={{color: 'black', justifyContent: 'center', display: 'flex', padding: '2em', fontSize: '1.2em'}}>
