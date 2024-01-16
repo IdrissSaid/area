@@ -10,10 +10,10 @@ export default function Providers() {
     useEffect( () => {
         const getServices = async () => {
         try {
-            const { session } = await useMySession()
+            const { session, back } = await useMySession()
             if (!session)
                 return
-            let res = await fetch(`http://127.0.0.1:8080/api/session?session_id=${session}`,  {
+            let res = await fetch(`${back}/api/session?session_id=${session}`,  {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export default function Providers() {
             if (res.ok) {
                 setUser({...data, session})
             }
-            res = await fetch(`http://127.0.0.1:8080/api/service?session_id=${session}&type=service`,  {
+            res = await fetch(`${back}/api/service?session_id=${session}&type=service`,  {
                 method: 'GET',
                 headers: {
                 'Content-Type': 'application/json',

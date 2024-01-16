@@ -7,10 +7,10 @@ export default function service() {
   useEffect( () => {
       const getSavedServices = async () => {
         try {
-          const { session } = await useMySession()
+          const { session, back } = await useMySession()
           if (!session)
             return
-          const res = await fetch(`http://127.0.0.1:8080/api/service/saved?session_id=${session}`,  {
+          const res = await fetch(`${back}/api/service/saved?session_id=${session}`,  {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

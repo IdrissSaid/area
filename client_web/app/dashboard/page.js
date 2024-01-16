@@ -99,15 +99,15 @@ function ShowServices({type, onChange}) {
   useEffect( () => {
     const getServices = async () => {
       try {
-        const { session } = await useMySession()
+        const { session, back } = await useMySession()
         if (!session)
           return
-        let res = await fetch(`http://127.0.0.1:8080/api/service?type=${type}&session_id=${session}`);
+        let res = await fetch(`${back}/api/service?type=${type}&session_id=${session}`);
         let data = await res?.json()
         if (res?.ok) {
           setServices(data)
         }
-        res = await fetch(`http://127.0.0.1:8080/api/session?session_id=${session}`,  {
+        res = await fetch(`${back}/api/session?session_id=${session}`,  {
             method: 'GET',
             headers: {
             'Content-Type': 'application/json',
