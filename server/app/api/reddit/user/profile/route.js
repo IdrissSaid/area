@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export const GET = (req) => {
+export const GET = async (req) => {
   const url = new URL(req.url);
   const access_token = url.searchParams.get("access_token");
 
