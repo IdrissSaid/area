@@ -6,6 +6,7 @@ import { cookies } from 'next/headers'
 import bcrypt from 'bcrypt';
 import Github from "next-auth/providers/github";
 import Reddit from "next-auth/providers/reddit";
+import Discord from "next-auth/providers/discord";
 
 const saltRounds = 10;
 
@@ -41,6 +42,17 @@ const authOptions = ({
                     return user;
                 } else {
                     return null;
+                }
+            },
+        }),
+        Discord({
+            name: 'discord',
+            clientId: DISCORD_CL_ID,
+            clientSecret: DISCORD_CL_SECRET,
+            async profile(profile) {
+                console.log("profile Discord ", profile);
+                return {
+                    ...profile,
                 }
             },
         }),
