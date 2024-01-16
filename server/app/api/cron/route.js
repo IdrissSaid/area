@@ -5,8 +5,8 @@ import { getProvider } from '../session/getProvider'
 export async function GET() {
     const res = await prisma.serviceSaved.findMany({
         include: {
-            serviceId: true,
-            cibleId: true,
+            service: true,
+            cible: true,
         }
     })
     if (!res)
