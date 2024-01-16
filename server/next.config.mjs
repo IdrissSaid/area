@@ -1,4 +1,4 @@
-import cors from 'cors';
+const cors = require('cors');
 
 module.exports = {
   async headers() {
